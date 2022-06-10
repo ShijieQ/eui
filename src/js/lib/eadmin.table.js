@@ -1030,12 +1030,16 @@ class Table{
 				// 开关
 				switch : (c, r) => {
 					let api = '';
+					let disabled = '';
 					if ( ! _.isFunction(c.api))
 						console.log('没有指定保存开关状态的API地址');
 					else
 						api = c.api(r);
+					if (_.isFunction(c.disabled)) {
+						disable = (c.disabled() === true ? ' disabled' : '');
+					}
 					return `<label class="no-padding" data-api="${api}" data-field="${c.field}">
-								<input type="radio" data-model="switch" value="${r[c.field]}">
+								<input type="radio" data-model="switch" value="${r[c.field]}" ${disabled}>
 							</label>`;
 				},
 				// 按钮

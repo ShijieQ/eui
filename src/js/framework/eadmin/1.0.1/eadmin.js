@@ -687,6 +687,7 @@ let eadmin = class Eadmin{
      * 通用获取GET参数
      */
     request(name = ''){
+        let dom = $('#' + Mount.window + '_query');
         // 获取参数原始值
         if (dom.length == 0)
         {
@@ -815,7 +816,15 @@ let eadmin = class Eadmin{
                 break;
             }
         }).
-        catch((e) => {console.log(e);});
+        catch((e) => {
+            console.log(e);
+            if (param.redirect != undefined) {
+                window.location.href = param.redirect;
+            }
+            if (module.conf.http.error_page != undefined) {
+                window.location.href = module.conf.http.error_page;
+            }
+        });
     }
 
     /**
@@ -910,9 +919,11 @@ let eadmin = class Eadmin{
             console.log(error);
             if (_.isFunction(param.error))
                 param.error();
+            if (module.conf.http.error_page != undefined) {
+                window.location.href = module.conf.http.error_page;
+            }
         });
     }
-
 }
 
 // 实例化
