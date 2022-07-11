@@ -818,10 +818,11 @@ let eadmin = class Eadmin{
         }).
         catch((e) => {
             console.log(e);
+            console.log('出错啦出错啦！！！！！');
             if (param.redirect != undefined) {
                 window.location.href = param.redirect;
             }
-            if (module.conf.http.error_page != undefined) {
+            if (module.conf.http.error_page != undefined && param.error != undefined) {
                 window.location.href = module.conf.http.error_page;
             }
         });

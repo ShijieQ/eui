@@ -1036,7 +1036,7 @@ class Table{
 					else
 						api = c.api(r);
 					if (_.isFunction(c.disabled)) {
-						disable = (c.disabled() === true ? ' disabled' : '');
+						disabled = (c.disabled(r) === true ? ' disabled' : '');
 					}
 					return `<label class="no-padding" data-api="${api}" data-field="${c.field}">
 								<input type="radio" data-model="switch" value="${r[c.field]}" ${disabled}>
